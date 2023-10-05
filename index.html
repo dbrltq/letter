@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<style type="text/css">
+body{margin: 0; background-image: url(room.jpg); background-size: cover; background-attachment: fixed;}
+.letter{width: 30px; height: auto; position: absolute; opacity: 80%;}
+#poetText { display: none; z-index: 9; position: absolute; left: 500px; top: 100px; white-space: nowrap; color: black; font-size: 1.5rem; line-height: 1.5; }
+#paper{display: none; z-index: 8; position: absolute; left: 480px; top: 80px;}
+#paper img {width: 1000px; height: 500px;}
+</style>
+</head>
+<body>
+<div id="paper">
+    <img src="종이.jpeg">
+</div>
+<div id="poetText">
+</div>
+
+<img src="letter.png" class="letter">
+<script type="text/javascript">
+
+    var a = ["letter","pencil","mac"]
+
+    for(var i=0; i<30; i++){
+        var t = document.createElement("img");
+        t.src = a[randomBH(0,2)] + ".png";
+        t.className = "letter"
+        t.style.width = randomBH(40,80) + "px";
+        t.style.height = "auto";
+        t.style.left = Math.random()*screen.availWidth + "px";
+        t.style.top = Math.random()*screen.availHeight + "px";
+        document.body.appendChild(t);
+        
+        t.addEventListener('click', function() {
+            poetText.style.display = 'block';
+            paper.style.display = 'block';
+        });
+    }
+
+
+    function randomBH(min, max){
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+
+
+
+    var poet = "이 편지는 영국에서 최초로 시작되어 일년에 한 바퀴 돌면서 받는 사람에게 행운을 주었고 <br> 지금 당신에게로 옮겨진 이 편지는 4일 안에 당신 곁을 떠나야 합니다. <br> 이 편지를 포함해서 7통을 행운이 필요한 사람에게 보내 주셔야 합니다.<br> 복사를 해도 좋습니다. 혹 미신이라 하실지 모르지만 사실입니다. <br> 영국에서 HGXWCH이라는 사람은 1930년에 이 편지를 받았습니다. <br> 그는 비서에게 복사해서 보내라고 했습니다. 며칠 뒤에 복권에 당첨되어 20억을 받았습니다. <br> 어떤 이는 이 편지를 받았으나 96시간 이내 자신의 손에서 떠나야 한다는 사실을 잊었습니다.<br> 그는 곧 사직되었습니다. 나중에야 이 사실을 알고 7통의 편지를 보냈는데 다시 좋은 직장을 얻었습니다.<br> 미국의 케네디 대통령은 이 편지를 받았지만 그냥 버렸습니다. 결국 9일 후 그는 암살 당했습니다. <br>기억해 주세요. 이 편지를 보내면 7년의 행운이 있을 것이고 그렇지 않으면 3년의 불행이 있을 것입니다.<br> 그리고 이 편지를 버리거나 낙서를 해서는 절대로 안됩니다. 7통입니다.<br> 이 편지를 받은 사람은 행운이 깃들 것입니다. 힘들겠지만 좋은게 좋다고 생각하세요. <br> 7년의 행운을 빌면서..";
+    var poetArr = poet.split(" ");
+    var poetText = document.getElementById("poetText");
+
+    var myTimer = setInterval(print,200);
+    var s=0;
+    function print(){
+        poetText.innerHTML += poetArr[s] + " ";
+        s++;
+        if(s == poetArr.length){
+            clearInterval(myTimer);
+        }
+    }
+</script>
+
+</body>
+</html>
+
